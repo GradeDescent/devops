@@ -9,6 +9,7 @@ let
   dbPass           = readKey ./postgres-password.key;      # password for Postgres role "gradedescent"
   jwtSecret        = readKey ./jwt-secret.key;
   serviceTokenSalt = readKey ./service-token-salt.key;
+  openaiKey = readKey ./openai.key;
 
   # ---- app settings ----
   appPort = "3000";
@@ -187,6 +188,11 @@ SQL
 
       RATE_LIMIT_PER_MINUTE = "100";
       MAGIC_LINK_TTL_MINUTES = "15";
+
+      AWS_REGION="us-east-2";
+      ARTIFACTS_BUCKET="artifacts.gradedescent.com";
+
+      OPENAI_KEY= openaiKey;
     };
 
     serviceConfig = {
